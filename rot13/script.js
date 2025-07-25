@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         document.body.style.filter = "hue-rotate(180deg) saturate(1.5)";
-        document.body.style.animation = "pulse 0.5s infinite alternate";
+        document.removeEventListener("keydown");
       }
     }
   }
