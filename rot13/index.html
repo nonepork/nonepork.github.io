@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ROT13 CYBERDECK v2.1</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="./script.js"></script>
+  </head>
+  <body>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+
+    <div class="container">
+      <div class="header">
+        <div class="ascii-art">
+          ██▀███ ▒█████ ▄▄▄█████▓ ▄█ █▄ ▄▄▄█████▓ ██░ ██ ██▀███ ▓█████ ▓█████
+          ▓██ ▒ ██▒▒██▒ ██▒▓ ██▒ ▓▒▓██ ▀█ ██ ▓ ██▒ ▓▒▓██░ ██▒▓██ ▒ ██▒▓█ ▀ ▓█ ▀
+          ▓██ ░▄█ ▒▒██░ ██▒▒ ▓██░ ▒░ ▓██ █▄ ▓██▓ ▒ ▓██░ ▒░▒██▀▀██░▓██ ░▄█ ▒▒███
+          ▒███ ▒██▀▀█▄ ▒██ ██░░ ▓██▓ ░ ▒██ ████▄▒██▒ ░ ▓██▓ ░ ░▓█ ░██ ▒██▀▀█▄
+          ▒▓█ ▄ ▒▓█ ▄ ░██▓ ▒██▒░ ████▓▒░ ▒██▒ ░ ▒▀█▀ ▄ ░██░ ▒██▒ ░ ░▓█▒░██▓░██▓
+          ▒██▒░▒████▒░▒████▒ ░ ▒▓ ░▒▓░░ ▒░▒░▒░ ▒ ░░ ░ ▐░ ░ ░▓ ▒ ░░ ▒ ░░▒░▒ ░ ▒▓
+          ░▒▓░░░ ▒░ ░░░ ▒░ ░ ░▒ ░ ▒░ ░ ▒ ▒░ ░ ░ ░░ ░▒ ░ ░ ▒ ░▒░ ░ ░▒ ░ ▒░ ░ ░ ░
+          ░ ░ ░ ░░ ░ ░ ░ ░ ▒ ░ ░░ ░▒ ░ ░ ░░ ░ ░░ ░ ░ ░ ░ ░ ░ ░ ░░ ░ ░ ░ ░ ░ ░ ░
+          ░
+        </div>
+        <div class="title">CYBERDECK ROT13 PROTOCOL v2.1</div>
+        <div class="subtitle">[CLASSIFIED] CIPHER OPERATIONS TERMINAL</div>
+      </div>
+
+      <div class="status-bar">
+        <div class="status-item">
+          <span>STATUS: </span>
+          <span class="blink" style="color: #00ff00">ONLINE</span>
+        </div>
+        <div class="status-item">
+          <span>SECURITY: </span>
+          <span style="color: #ffff00">ENCRYPTED</span>
+        </div>
+        <div class="status-item">
+          <span>UPTIME: </span>
+          <span id="uptime">13:37:42</span>
+        </div>
+      </div>
+
+      <div class="warning">
+        ⚠ WARNING: UNAUTHORIZED ACCESS TO THIS SYSTEM IS PROHIBITED ⚠
+      </div>
+
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <span>ROT13.EXE - CIPHER INTERFACE</span>
+          <div class="terminal-controls">
+            <div class="control-btn close"></div>
+            <div class="control-btn min"></div>
+            <div class="control-btn max"></div>
+          </div>
+        </div>
+        <div class="terminal-content">
+          <div class="input-section">
+            <label class="label">> INPUT_DATA_STREAM:</label>
+            <div class="input-wrapper">
+              <textarea
+                id="inputText"
+                placeholder="ENTER TEXT FOR ROT13 CIPHER PROCESSING..."
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <div class="rot-selector">
+              <label class="label" style="margin-bottom: 5px; font-size: 12px"
+                >CIPHER MODE:</label
+              >
+              <select id="rotValue" class="rot-dropdown">
+                <option value="1">ROT1</option>
+                <option value="2">ROT2</option>
+                <option value="3">ROT3</option>
+                <option value="4">ROT4</option>
+                <option value="5">ROT5</option>
+                <option value="6">ROT6</option>
+                <option value="7">ROT7</option>
+                <option value="8">ROT8</option>
+                <option value="9">ROT9</option>
+                <option value="10">ROT10</option>
+                <option value="11">ROT11</option>
+                <option value="12">ROT12</option>
+                <option value="13" selected>ROT13</option>
+                <option value="14">ROT14</option>
+                <option value="15">ROT15</option>
+                <option value="16">ROT16</option>
+                <option value="17">ROT17</option>
+                <option value="18">ROT18</option>
+                <option value="19">ROT19</option>
+                <option value="20">ROT20</option>
+                <option value="21">ROT21</option>
+                <option value="22">ROT22</option>
+                <option value="23">ROT23</option>
+                <option value="24">ROT24</option>
+                <option value="25">ROT25</option>
+              </select>
+            </div>
+            <button class="btn" onclick="encodeText()">
+              <span>ENCRYPT</span>
+            </button>
+            <button class="btn" onclick="decodeText()">
+              <span>DECRYPT</span>
+            </button>
+            <button class="btn" onclick="clearAll()">
+              <span>PURGE</span>
+            </button>
+          </div>
+
+          <div class="input-section">
+            <label class="label">> OUTPUT_DATA_STREAM:</label>
+            <div class="input-wrapper">
+              <textarea
+                id="outputText"
+                placeholder="PROCESSED DATA WILL APPEAR HERE..."
+                readonly
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-value" id="charCount">0</div>
+          <div class="stat-label">CHARS PROCESSED</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="wordCount">0</div>
+          <div class="stat-label">WORDS ANALYZED</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="operations">0</div>
+          <div class="stat-label">OPERATIONS</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">CAESAR CIPHER</div>
+          <div class="stat-label">ENCRYPTION</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>DID I WROTE A UNNECESSARY UI FOR A ROT13 WEBSITE? YES.</p>
+        <p>ACCESS GRANTED TO: ANONYMOUS_USER | CLEARANCE: LEVEL_7</p>
+      </div>
+    </div>
+  </body>
+</html>
