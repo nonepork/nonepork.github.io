@@ -1,152 +1,375 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
+    <title>ROT Encoder - Netscape Navigator Compatible</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ROT13 CYBERDECK v2.1</title>
-    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <style>
+      body {
+        background: #008080
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" fill="%23008080"/><circle cx="10" cy="10" r="2" fill="%23ff6b6b" opacity="0.3"/><rect x="0" y="0" width="5" height="5" fill="%23ffd93d" opacity="0.2"/><rect x="15" y="15" width="5" height="5" fill="%236bcf7f" opacity="0.2"/></svg>')
+          repeat;
+        font-family: "Comic Sans MS", "Times New Roman", serif;
+        margin: 0;
+        padding: 0;
+        color: #000000;
+      }
+
+      .container {
+        padding: 0;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .header {
+        background: linear-gradient(
+          45deg,
+          #ff6b6b,
+          #ffd93d,
+          #6bcf7f,
+          #4ecdc4,
+          #45b7d1
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 3s ease infinite;
+        text-align: center;
+        padding: 20px;
+        border: 3px solid #ff0000;
+        margin: 10px;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .header h1 {
+        font-size: 36px;
+        color: #ff0000;
+        margin: 10px 0;
+        font-weight: bold;
+        text-shadow:
+          3px 3px 0px #ffff00,
+          6px 6px 0px #00ff00;
+        font-family: "Impact", "Arial Black", sans-serif;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .header p {
+        font-size: 14px;
+        color: #000080;
+        margin: 5px 0;
+        font-weight: bold;
+        background: #ffff00;
+        padding: 5px;
+        border: 2px dashed #ff0000;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .main-panel {
+        background: #c0c0c0;
+        border: 5px ridge #808080;
+        padding: 20px;
+        margin: 10px;
+        box-shadow: 5px 5px 0px #000000;
+      }
+
+      .control-group {
+        margin-bottom: 15px;
+        background: #ffd93d;
+        padding: 10px;
+        border: 2px solid #ff6b6b;
+      }
+
+      label {
+        font-weight: bold;
+        color: #800080;
+        display: block;
+        margin-bottom: 3px;
+        font-size: 14px;
+        text-shadow: 1px 1px 0px #ffffff;
+      }
+
+      select {
+        border: 3px inset #c0c0c0;
+        background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+        font-family: "Arial", sans-serif;
+        font-size: 12px;
+        padding: 5px;
+        width: 120px;
+        font-weight: bold;
+      }
+
+      textarea {
+        border: 3px inset #c0c0c0;
+        background: #ffffff;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        padding: 8px;
+        width: 100%;
+        height: 150px;
+        resize: none;
+        box-sizing: border-box;
+        box-shadow: 2px 2px 0px #808080 inset;
+      }
+
+      .textarea-container {
+        margin-bottom: 15px;
+        background: #e0ffe0;
+        padding: 10px;
+        border: 2px solid #008000;
+      }
+
+      .footer {
+        text-align: center;
+        margin: 20px 10px;
+        padding: 15px;
+        background: #ff6b6b;
+        border: 3px solid #000000;
+        color: #ffffff;
+        font-weight: bold;
+      }
+
+      .footer p {
+        margin: 8px 0;
+        text-shadow: 2px 2px 0px #000000;
+      }
+
+      .blink {
+        animation: blink 1s infinite;
+        background: #ffff00;
+        color: #ff0000;
+        padding: 2px 5px;
+        border: 1px solid #000000;
+      }
+
+      @keyframes blink {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .rainbow-text {
+        background: linear-gradient(
+          45deg,
+          #ff0000,
+          #ff8000,
+          #ffff00,
+          #80ff00,
+          #00ff00,
+          #00ff80,
+          #00ffff,
+          #0080ff,
+          #0000ff,
+          #8000ff,
+          #ff00ff,
+          #ff0080
+        );
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: rainbow 2s linear infinite;
+      }
+
+      @keyframes rainbow {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* Netscape-style table for layout */
+      .layout-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 15px;
+      }
+
+      .layout-table td {
+        vertical-align: top;
+      }
+
+      .marquee-container {
+        background: #0000ff;
+        color: #ffff00;
+        padding: 5px;
+        margin: 10px;
+        border: 2px solid #ffffff;
+        overflow: hidden;
+      }
+
+      .scrolling-text {
+        animation: scroll-left 15s linear infinite;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
   </head>
   <body>
-    <canvas class="matrix-bg" id="matrix"></canvas>
-
     <div class="container">
+      <div class="marquee-container">
+        <div class="scrolling-text">
+          ★☆★ WELCOME TO THE WORLD WIDE WEB! ★☆★ This site is optimized for
+          Netscape Navigator! ★☆★ Don't forget to bookmark us! ★☆★
+        </div>
+      </div>
+
       <div class="header">
-        <div class="ascii-art">
-          ██▀███ ▒█████ ▄▄▄█████▓ ▄█ █▄ ▄▄▄█████▓ ██░ ██ ██▀███ ▓█████ ▓█████
-          ▓██ ▒ ██▒▒██▒ ██▒▓ ██▒ ▓▒▓██ ▀█ ██ ▓ ██▒ ▓▒▓██░ ██▒▓██ ▒ ██▒▓█ ▀ ▓█ ▀
-          ▓██ ░▄█ ▒▒██░ ██▒▒ ▓██░ ▒░ ▓██ █▄ ▓██▓ ▒ ▓██░ ▒░▒██▀▀██░▓██ ░▄█ ▒▒███
-          ▒███ ▒██▀▀█▄ ▒██ ██░░ ▓██▓ ░ ▒██ ████▄▒██▒ ░ ▓██▓ ░ ░▓█ ░██ ▒██▀▀█▄
-          ▒▓█ ▄ ▒▓█ ▄ ░██▓ ▒██▒░ ████▓▒░ ▒██▒ ░ ▒▀█▀ ▄ ░██░ ▒██▒ ░ ░▓█▒░██▓░██▓
-          ▒██▒░▒████▒░▒████▒ ░ ▒▓ ░▒▓░░ ▒░▒░▒░ ▒ ░░ ░ ▐░ ░ ░▓ ▒ ░░ ▒ ░░▒░▒ ░ ▒▓
-          ░▒▓░░░ ▒░ ░░░ ▒░ ░ ░▒ ░ ▒░ ░ ▒ ▒░ ░ ░ ░░ ░▒ ░ ░ ▒ ░▒░ ░ ░▒ ░ ▒░ ░ ░ ░
-          ░ ░ ░ ░░ ░ ░ ░ ░ ▒ ░ ░░ ░▒ ░ ░ ░░ ░ ░░ ░ ░ ░ ░ ░ ░ ░ ░░ ░ ░ ░ ░ ░ ░ ░
-          ░
-        </div>
-        <div class="title">CYBERDECK ROT13 PROTOCOL v2.1</div>
-        <div class="subtitle">[CLASSIFIED] CIPHER OPERATIONS TERMINAL</div>
+        <h1 class="rainbow-text">🔄 ROT TEXT ENCODER 🔄</h1>
+        <p><strong>*** ULTRA COOL CAESAR CIPHER TOOL ***</strong></p>
+        <p>
+          🌟 Enter text below and select rotation value - encoding happens
+          automatically! 🌟
+        </p>
       </div>
 
-      <div class="status-bar">
-        <div class="status-item">
-          <span>STATUS: </span>
-          <span class="blink" style="color: #00ff00">ONLINE</span>
+      <div class="main-panel">
+        <div class="control-group">
+          <label for="rotSelect">Rotation Value:</label>
+          <select id="rotSelect">
+            <option value="1">ROT1</option>
+            <option value="2">ROT2</option>
+            <option value="3">ROT3</option>
+            <option value="4">ROT4</option>
+            <option value="5">ROT5</option>
+            <option value="6">ROT6</option>
+            <option value="7">ROT7</option>
+            <option value="8">ROT8</option>
+            <option value="9">ROT9</option>
+            <option value="10">ROT10</option>
+            <option value="11">ROT11</option>
+            <option value="12">ROT12</option>
+            <option value="13" selected>ROT13</option>
+            <option value="14">ROT14</option>
+            <option value="15">ROT15</option>
+            <option value="16">ROT16</option>
+            <option value="17">ROT17</option>
+            <option value="18">ROT18</option>
+            <option value="19">ROT19</option>
+            <option value="20">ROT20</option>
+            <option value="21">ROT21</option>
+            <option value="22">ROT22</option>
+            <option value="23">ROT23</option>
+            <option value="24">ROT24</option>
+            <option value="25">ROT25</option>
+          </select>
         </div>
-        <div class="status-item">
-          <span>SECURITY: </span>
-          <span style="color: #ffff00">ENCRYPTED</span>
-        </div>
-        <div class="status-item">
-          <span>UPTIME: </span>
-          <span id="uptime">13:37:42</span>
-        </div>
-      </div>
 
-      <div class="warning">
-        ⚠ WARNING: UNAUTHORIZED ACCESS TO THIS SYSTEM IS PROHIBITED ⚠
-      </div>
-
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <span>ROT13.EXE - CIPHER INTERFACE</span>
-          <div class="terminal-controls">
-            <div class="control-btn close"></div>
-            <div class="control-btn min"></div>
-            <div class="control-btn max"></div>
-          </div>
-        </div>
-        <div class="terminal-content">
-          <div class="input-section">
-            <label class="label">> INPUT_DATA_STREAM:</label>
-            <div class="input-wrapper">
-              <textarea
-                id="inputText"
-                placeholder="ENTER TEXT FOR ROT13 CIPHER PROCESSING..."
-              ></textarea>
-            </div>
-          </div>
-
-          <div class="button-group">
-            <div class="rot-selector">
-              <label class="label" style="margin-bottom: 5px; font-size: 12px"
-                >CIPHER MODE:</label
-              >
-              <select id="rotValue" class="rot-dropdown">
-                <option value="1">ROT1</option>
-                <option value="2">ROT2</option>
-                <option value="3">ROT3</option>
-                <option value="4">ROT4</option>
-                <option value="5">ROT5</option>
-                <option value="6">ROT6</option>
-                <option value="7">ROT7</option>
-                <option value="8">ROT8</option>
-                <option value="9">ROT9</option>
-                <option value="10">ROT10</option>
-                <option value="11">ROT11</option>
-                <option value="12">ROT12</option>
-                <option value="13" selected>ROT13</option>
-                <option value="14">ROT14</option>
-                <option value="15">ROT15</option>
-                <option value="16">ROT16</option>
-                <option value="17">ROT17</option>
-                <option value="18">ROT18</option>
-                <option value="19">ROT19</option>
-                <option value="20">ROT20</option>
-                <option value="21">ROT21</option>
-                <option value="22">ROT22</option>
-                <option value="23">ROT23</option>
-                <option value="24">ROT24</option>
-                <option value="25">ROT25</option>
-              </select>
-            </div>
-            <button class="btn" onclick="encodeText()">
-              <span>ENCRYPT</span>
-            </button>
-            <button class="btn" onclick="decodeText()">
-              <span>DECRYPT</span>
-            </button>
-            <button class="btn" onclick="clearAll()">
-              <span>PURGE</span>
-            </button>
-          </div>
-
-          <div class="input-section">
-            <label class="label">> OUTPUT_DATA_STREAM:</label>
-            <div class="input-wrapper">
-              <textarea
-                id="outputText"
-                placeholder="PROCESSED DATA WILL APPEAR HERE..."
-                readonly
-              ></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="stats">
-        <div class="stat-item">
-          <div class="stat-value" id="charCount">0</div>
-          <div class="stat-label">CHARS PROCESSED</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value" id="wordCount">0</div>
-          <div class="stat-label">WORDS ANALYZED</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value" id="operations">0</div>
-          <div class="stat-label">OPERATIONS</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">CAESAR CIPHER</div>
-          <div class="stat-label">ENCRYPTION</div>
-        </div>
+        <table class="layout-table">
+          <tr>
+            <td width="50%">
+              <div class="textarea-container">
+                <label for="inputText">Input Text:</label>
+                <textarea
+                  id="inputText"
+                  placeholder="Type your message here..."
+                ></textarea>
+              </div>
+            </td>
+            <td width="50%">
+              <div class="textarea-container">
+                <label for="outputText">Encoded Output:</label>
+                <textarea
+                  id="outputText"
+                  readonly
+                  placeholder="Encoded text will appear here..."
+                ></textarea>
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
 
       <div class="footer">
-        <p>DID I WROTE A UNNECESSARY UI FOR A ROT13 WEBSITE? YES.</p>
-        <p>ACCESS GRANTED TO: ANONYMOUS_USER | CLEARANCE: LEVEL_7</p>
+        <p><strong>🌈 WELCOME TO THE INFORMATION HIGHWAY! 🌈</strong></p>
+        <p>
+          This page is best viewed with Netscape Navigator 4.0+ at 800x600
+          resolution in 256 colors!
+        </p>
+        <p class="blink">
+          *** HOT! NEW! *** Now with INSTANT encoding technology!
+        </p>
+        <p>Check the webmaster: <a href=https://github.com/nonepork/>at here</a></p>
+        <p>🔗 Add this site to your bookmarks! 🔗</p>
+        <div style="margin-top: 10px; font-size: 10px">
+          <p>© 1998 - Site created with Neovim and lots of ☕</p>
+        </div>
       </div>
     </div>
 
-    <script src="./script.js"></script>
+    <script>
+      function rotEncode(text, shift) {
+        return text.replace(/[a-zA-Z]/g, function (char) {
+          var start = char <= "Z" ? 65 : 97;
+          var code = char.charCodeAt(0);
+          var shifted = (((code - start + shift) % 26) + 26) % 26;
+          return String.fromCharCode(start + shifted);
+        });
+      }
+
+      function updateOutput() {
+        var input = document.getElementById("inputText").value;
+        var rotValue = parseInt(document.getElementById("rotSelect").value);
+        var output = rotEncode(input, rotValue);
+        document.getElementById("outputText").value = output;
+      }
+
+      // Add event listeners for real-time encoding
+      document
+        .getElementById("inputText")
+        .addEventListener("input", updateOutput);
+      document
+        .getElementById("rotSelect")
+        .addEventListener("change", updateOutput);
+
+      updateOutput();
+    </script>
   </body>
 </html>
