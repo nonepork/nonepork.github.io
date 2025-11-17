@@ -9,7 +9,7 @@ body {
 
   font-family: "Segoe UI";
 
-  background-image: url("https://picfiles.alphacoders.com/655/thumb-1920-655923.png");
+  background-image: url("./static/assets/bg.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -151,6 +151,25 @@ taskbar {
     }
   }
   program {
+  }
+
+  systray {
+    margin-top: auto;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 

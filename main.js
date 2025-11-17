@@ -2,6 +2,7 @@ var menuButton = document.querySelector("menu-button");
 var menuButtonClicked = document.getElementById("clicked");
 var startMenu = document.querySelector("start-menu");
 var desktop = document.querySelector("desktop");
+var critialStop = document.getElementById("critical");
 
 class PopUp extends HTMLElement {
   constructor() {
@@ -60,9 +61,11 @@ programs.forEach((program) => {
     switch (action) {
       case "openComputer":
         document.body.appendChild(wipPopUp);
+        critialStop.play();
         break;
       case "openRentFree":
         document.body.appendChild(wipPopUp);
+        critialStop.play();
         break;
     }
   });
