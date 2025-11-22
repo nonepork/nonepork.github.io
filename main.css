@@ -107,6 +107,9 @@ start-menu {
   bottom: 40px;
   left: 0;
   z-index: 3;
+
+  modify {
+  }
 }
 
 taskbar {
