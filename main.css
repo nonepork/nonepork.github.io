@@ -1,3 +1,33 @@
 body {
   background-color: black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+
+  font-family: "JetBrains Mono", monospace;
+}
+
+menu {
+  display: flex;
+  gap: 20px;
+  color: white;
+  margin-top: -40px;
+  margin-left: -40px;
+
+  .text-menu {
+    align-self: center;
+    margin-top: -20px;
+  }
+
+  a {
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+  }
 }
