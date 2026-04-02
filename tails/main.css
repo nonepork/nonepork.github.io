@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.overlap {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.tails {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+
+  background-image: url("../static/assets/lightyear.png");
+  width: 56px;
+  height: 56px;
+
+  background-size: 560px 168px;
+  background-position: 0px 0px;
+  animation: flying 0.3s steps(4) infinite;
+
+  image-rendering: pixelated;
+}
+
+.tails.explode {
+  animation:
+    explode-sprite 0s steps(1) forwards,
+    explode 2.5s forwards;
+}
+
+.tails.fly-up {
+  animation: fly-up 0.5s steps(10) infinite;
+}
+
+@keyframes explode-sprite {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 0px -56px;
+  }
+}
+
+@keyframes explode {
+  10% {
+    top: 10%;
+  }
+  100% {
+    top: 1000%;
+  }
+}
+
+@keyframes flying {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: -224px 0px;
+  }
+}
+
+@keyframes fly-up {
+  0% {
+    background-position: 0px -122px;
+  }
+  100% {
+    background-position: -560px -122px;
+  }
+}
+
+#boom-gif {
+  display: none;
+
+  width: 71px;
+  height: 100px;
+  image-rendering: pixelated;
+
+  background-image: url("../static/assets/boom.png");
+  background-size: 1207px 100px;
+  background-position: -500px 0px;
+
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  animation: boom-gif 1s steps(17, end) forwards;
+}
+
+@keyframes boom-gif {
+  0% {
+    background-position: 0px 0px;
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    background-position: -1207px 0px;
+    opacity: 0;
+  }
+}
