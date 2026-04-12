@@ -8,7 +8,8 @@ body {
   margin: 0;
   overflow: hidden;
 
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
 }
 
 menu {
@@ -19,15 +20,31 @@ menu {
   margin-left: -40px;
 
   .text-menu {
-    align-self: center;
-    margin-top: -20px;
+    align-self: top;
+    margin-right: -40px;
   }
 
-  a {
-    font-size: 16px;
+  .links {
+    font-family: "JetBrains Mono", monospace;
+    margin-top: 40px;
+  }
+
+  .links > a {
+    font-size: 18px;
+    font-weight: 100;
     color: white;
     text-decoration: none;
     position: relative;
     display: inline-block;
   }
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.glitch-text {
+  transition: none;
 }
