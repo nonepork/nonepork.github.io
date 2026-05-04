@@ -1,12 +1,13 @@
-let tails = document.getElementById("tails");
-let boom_gif = document.getElementById("boom-gif");
+const tails = document.getElementById("tails");
+const boomGif = document.getElementById("boom-gif");
+const boomButton = document.getElementById("boom-button");
 
 // tails.addEventListener("click", () => {
 //   tails.classList.add("fly-up");
 // });
 
 document.getElementById("boom-button").addEventListener("click", () => {
-  console.log("tails demolished");
   tails.classList.add("explode");
-  boom_gif.style.display = "block";
+  boomGif.classList.add("play");
+  boomButton.disabled = true;
 });
