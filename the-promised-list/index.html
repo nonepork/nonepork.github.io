@@ -1,11 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>the promised list</title>
-	</head>
-	<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="small things to stay around for" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <script defer="" src="./script.js"></script>
+    <title>the promised list</title>
+  </head>
+  <body>
+    <main>
+      <h1>the promised list</h1>
+      <story-container
+        ><p class="note">Content note: this page mentions suicide.</p>
 
-	</body>
+        <p>TOWRITE</p>
+
+        <!-- NOTE: PLACEHOLDER -->
+
+        <!-- <h2>Things I have promised myself I will stay around for</h2> -->
+        <!-- <ul class="list"> -->
+        <!--   <li> -->
+        <!--     <span class="dot" aria-hidden="true"></span -->
+        <!--     ><span -->
+        <!--       >Nakamuraa season 2 :p</span -->
+        <!--     > -->
+        <!--   </li> -->
+        <!-- </ul> -->
+
+        <p>
+          If you want to, you can do it via below's feature, it can be a movie
+          that hasn't come out yet, a game you haven't play. Just anything that
+          you look forward to.
+        </p>
+        <h2>Make yours</h2></story-container
+      >
+
+      <div class="add">
+        <input
+          id="new"
+          type="text"
+          maxlength="140"
+          placeholder="Something I promise to stay around for"
+          aria-label="Add to your list"
+        />
+        <button class="btn" id="addBtn" type="button">Add</button>
+      </div>
+
+      <ul class="list mine" id="mine" aria-label="Your list"></ul>
+
+      <div class="tools">
+        <button class="btn" id="copyBtn" type="button" hidden>
+          Copy my list
+        </button>
+        <span
+          class="status"
+          id="status"
+          role="status"
+          aria-live="polite"
+        ></span>
+      </div>
+
+      <footer>
+        <p class="hint">
+          Your list stays in this browser. Nobody else sees it.
+        </p>
+        <p>
+          If you are struggling right now, please talk to someone. In the US you
+          can call or text 988. Elsewhere,
+          <a href="https://findahelpline.com" target="_blank" rel="noopener"
+            >findahelpline.com</a
+          >
+          lists services by country.
+        </p>
+      </footer>
+    </main>
+  </body>
 </html>
