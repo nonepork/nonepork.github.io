@@ -1,4 +1,4 @@
-@import url("../main.css");
+/* @import url("../main.css"); */
 
 :root {
   --bg: #000000;
@@ -31,7 +31,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 main {
-  max-width: var(--max-w-prose);
+  max-width: 65ch;
   margin: 0 auto;
   padding: 5rem 1.5rem 4rem;
 }
