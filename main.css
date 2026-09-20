@@ -1,3 +1,7 @@
+:root {
+  --max-w-prose: 65ch;
+}
+
 body {
   background-color: black;
 
